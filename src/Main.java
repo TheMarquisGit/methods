@@ -12,9 +12,16 @@ public class Main {
 
     //метод проверки високосности года
     public static void checkLeapYear(int year) {
-        if (year > 1584 && year % 400 == 0) {
+        if (year < 0) {
+            System.out.println("Год не может быть отрицательным");
+            return;
+        } else if (year >= 0 && year < 1584) {
+            System.out.println("Первым високосным годом по Григорианскому календарю был 1584");
+            return;
+        }
+        if (year >= 1584 && year % 400 == 0) {
             System.out.println(year + " год является високосным");
-        } else if (year > 1584 && year % 100 != 0 && year % 4 == 0) {
+        } else if (year >= 1584 && year % 100 != 0 && year % 4 == 0) {
             System.out.println(year + " год является високосным");
         } else System.out.println(year + " год не является високосным");
     }
@@ -38,8 +45,13 @@ public class Main {
             if (clientOS == 0) {
                 System.out.println(iOSLite);
             } else System.out.println(androidLite);
-        } else if (clientOS == 0) System.out.println(iOS);
-        else System.out.println(android);
+        }
+
+        if (year == LocalDate.now().getYear()) {
+            if (clientOS == 0) {
+                System.out.println(iOS);
+            } else System.out.println(android);
+        }
 
     }
 
@@ -74,10 +86,13 @@ public class Main {
             switch (distance) {
                 case 1:
                     System.out.println(message + 1);
+                    break;
                 case 2:
                     System.out.println(message + 2);
+                    break;
                 case 3:
                     System.out.println(message + 3);
+                    break;
             }
         } else System.out.println("Свыше 100 км доставки нет");
     }
